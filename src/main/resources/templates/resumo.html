@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resumo da Clínica</title>
+</head>
+<body>
+    <h1>Resumo da Clínica PetVida</h1>
+    <p>Total de animais: <span th:text="${totalAnimais}">0</span></p>
+    <p>Média de idade: <span th:text="${mediaIdade}">0.00</span></p>
+    <p>Animal mais velho: <span th:text="${animalMaisVelho}">nome</span></p>
+    <p>Gerado em: <span th:text="${dataHora}">data</span></p>
+</body>
+</html>
