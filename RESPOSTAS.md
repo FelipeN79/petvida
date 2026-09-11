@@ -18,3 +18,14 @@
 Capturas em `evidencias/`: `d1-erro-404.png` (Item 1, antes da correção), `d1-erro-500.png` (Item 3, antes da correção).
 
 Saída de `git log --oneline`:
+```
+8ee79c5 (HEAD -> main) parte-d: defeitos corrigidos
+2917f57 parte-d: codigo com defeitos
+94c95ff (origin/main, origin/HEAD) parte-a: sistema funcionando
+3a038f5 parte-a: projeto configurado
+```
+### D.2
+A linha com `th:text="${animal.nome}"` funcionou normalmente, mostrando "Mimi" na tela, porque o Thymeleaf processa esse atributo em tempo de renderização no servidor, substituindo o conteúdo da tag pelo valor da expressão. Já a linha `<p>${animal.especie}</p>` (ITEM 5, antes da correção) não usava nenhum atributo do Thymeleaf, então o motor de template não processou o `${...}` — ele foi enviado ao navegador exatamente como texto estático, sem nenhuma tentativa de avaliação. Isso revela que o Thymeleaf só processa expressões dentro de atributos específicos (como `th:text`, `th:each`, etc.); simplesmente escrever `${...}` dentro do HTML puro não aciona o motor de template.
+
+### D.3
+Considero o **ITEM 4** como o item correto, que não precisa de alteração: mesmo com o sufixo `.html` já presente na string retornada pelo Controller (`return "consulta.html"`), a página renderizou normalmente e exibiu os dados esperados sem nenhum erro de "view not found" ou duplicação de extensão. Confirmei isso testando diretamente no meu projeto: acessei `/consulta` com o `.html` mantido no `return`, e o Spring/Thymeleaf resolveu corretamente para o arquivo `consulta.html` em `templates/`.
